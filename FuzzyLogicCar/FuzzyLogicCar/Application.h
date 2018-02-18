@@ -13,6 +13,7 @@ public:
 
 	bool Run();
 	void SFMLTest();
+	void CheckerboardTest();
 
 private:
 	bool LoadTextures();
@@ -20,5 +21,9 @@ private:
 
 	sf::Texture car_texture;
 	sf::Sprite car_sprite;
+
+	sf::Image racingLine_image;
+	sf::Texture racingLine_texture;
+	sf::Sprite racingLine_sprite;
 };
 
