@@ -13,9 +13,9 @@ public:
 
 	bool Run();
 	void SFMLTest();
-	void CheckerboardTest();
 
 private:
+	bool CreateImages();
 	bool LoadTextures();
 	bool LoadSprites();
 
