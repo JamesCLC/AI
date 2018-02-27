@@ -10,8 +10,9 @@ Application::Application()
 		std::cout << "ERROR! Textures were not loaded successfully!" << std::endl;
 	}
 
-	if (!LoadSprites())
+	if (!CreateCar())
 	{
+
 		std::cout << "ERROR! Sprites were not created successfully!" << std::endl;
 	}
 }
@@ -38,7 +39,7 @@ bool Application::LoadTextures()
 }
 
 
-bool Application::LoadSprites()
+bool Application::CreateCar()
 {
 	// Create the car.
 	car_sprite.setTexture(car_texture);
@@ -48,7 +49,20 @@ bool Application::LoadSprites()
 		return false;
 	}
 
+	// Set the origin of the sprite to be it's centre point
+	float originX;
+	float originY;
+
+	originX = car_sprite.getOrigin().x + (car_sprite.getLocalBounds().width / 2);
+	originY = car_sprite.getOrigin().y + (car_sprite.getLocalBounds().height / 2);
+
+	car_sprite.setOrigin(originX, originY);
+
+	// Scale the car sprite down
 	car_sprite.scale(0.20, 0.20);
+
+	// Set the car to it's starting position
+	car_sprite.setPosition(windowWidth/2 , windowHeight/2);
 
 	return true;
 }
@@ -114,13 +128,40 @@ bool Application::DisplayStartup()
 	return false;
 }
 
+
 bool Application::HandleInput()
 {
-	return false;
+	// Accelerate to the right
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		if (velocity.x <= maxVelocity)
+		{
+			velocity.x += velocityIncrement;
+		}
+	}
+
+	// Move Left
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		if (velocity.x >= (maxVelocity * -1))
+		{
+			velocity.x -= velocityIncrement;
+		}
+	}
+
+	return true;
 }
 
 
+void Application::UpdateCar()
+{
+	// Update the displacement variable.
+	displacement.x += velocity.x;
 
+	// Reflect these changes in the car's location.
+	car_sprite.setPosition(displacement);
+
+}
 
 
 bool Application::Run()
@@ -129,12 +170,16 @@ bool Application::Run()
 	DisplayStartup();
 
 	// Set up the Render Window
-	sf::RenderWindow window(sf::VideoMode(1280, 720), "Fuzzy Car by James Clayton");
+	sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Fuzzy Car by James Clayton");
 
 	// Set up the Racing Line
-	sf::RectangleShape racingLine(sf::Vector2f(1, 720));
+	sf::RectangleShape racingLine(sf::Vector2f(1, windowHeight));
 	racingLine.setPosition(windowWidth / 2, 0);
 	racingLine.setFillColor(sf::Color::White);
+
+	// Set the starting values for the car's movement
+	velocity.x = startingVelocity;
+	displacement.x = startingDisplacement;
 
 	// Main Loop
 	while (window.isOpen())
@@ -146,12 +191,28 @@ bool Application::Run()
 				window.close();
 		}
 
+		HandleInput();
+
+		UpdateCar();
+
 		window.clear();
 		window.draw(racingLine);
 		window.draw(car_sprite);
 		window.display();
+
+		
 	}
 
 	return false;
 }
 
+/*
+	Hello, James! Here's a quick rundown on what needs to be done.
+	
+	I need to rethink the "Displacement" thing. At the moment, is just a float, and has no real basis on the racing line.
+	I'll need to get this working to the point where the car's velocity is measured from the racing line and not just 3D space.
+	Once that's done, I can have another look at the MATLAB stuff, finish my first design, ask Dr. King about it and then move on
+	to implementing the AI.
+
+	Good luck, you beautiful bastard! You can do this!
+*/
