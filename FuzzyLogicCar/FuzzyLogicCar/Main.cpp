@@ -5,6 +5,8 @@
 // Year 3 Semester 2 (2018)
 // Student Number 1501082
 
+// Font "MoonGet" sourced from [https://www.dafont.com/moon-get.font]
+
 // Includes
 #include "Application.h"
 #include "FuzzyLogic.h"

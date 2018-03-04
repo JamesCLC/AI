@@ -1,17 +1,18 @@
 // Application.h
-
 #pragma once
 
 // Includes
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
+#include <sstream>
 
 using std::cout;
 using std::cin;
 using std::endl;
 
 using std::string;
+using std::to_string;
 
 // Application Class
 class Application
@@ -28,15 +29,12 @@ public:
 private:
 	bool LoadTextures();
 	bool CreateCar();
+	bool LoadFont();
 
 private:
 	int windowWidth = 1280;
 	int windowHeight = 720;
 
-	int startingVelocity = 0;
-	int startingDisplacement = 0;
-
-	// Limiting Values?
 	float maxVelocity = 0.3;
 	float velocityIncrement = 0.01;
 
@@ -45,5 +43,12 @@ private:
 
 	sf::Texture car_texture;
 	sf::Sprite car_sprite;
+
+	sf::Shape* racingLine;
+
+	// Text Output
+	sf::Font font;
+	sf::Text velocityText;
+	sf::Text displacementText;
 };
 
