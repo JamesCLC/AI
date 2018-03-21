@@ -35,7 +35,7 @@ private:
 	int windowWidth = 1280;
 	int windowHeight = 720;
 
-	float maxVelocity = 0.3;
+	float maxVelocity = 0.6;
 	float velocityIncrement = 0.01;
 
 	sf::Vector2f velocity;

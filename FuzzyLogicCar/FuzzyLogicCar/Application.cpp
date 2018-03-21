@@ -66,20 +66,17 @@ bool Application::CreateCar()
 		return false;
 	}
 
-	// Set the origin of the sprite to be it's centre point
-	float originX;
-	float originY;
-
-	originX = car_sprite.getOrigin().x + (car_sprite.getLocalBounds().width / 2);
-	originY = car_sprite.getOrigin().y + (car_sprite.getLocalBounds().height / 2);
+	// Set the origin of the sprite to be it's centre point.
+	float originX = car_sprite.getOrigin().x + (car_sprite.getLocalBounds().width / 2);
+	float originY = car_sprite.getOrigin().y + (car_sprite.getLocalBounds().height / 2);
 
 	car_sprite.setOrigin(originX, originY);
 
-	// Scale the car sprite down
+	// Scale the car sprite down.
 	car_sprite.scale(0.20, 0.20);
 
-	// Set the car to it's starting position
-	car_sprite.setPosition(windowWidth/2 , windowHeight/2);
+	// Set the car to it's starting position.
+	car_sprite.setPosition(windowWidth/2 + displacement.x, windowHeight/2);
 
 	return true;
 }
@@ -183,22 +180,25 @@ bool Application::DisplayStartup()
 
 bool Application::HandleInput()
 {
-	// Accelerate to the right
+	// Move the Racing Line to the right.
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		if (velocity.x <= maxVelocity)
-		{
-			velocity.x += velocityIncrement;
-		}
+			racingLine->setPosition(racingLine->getPosition().x + 1, 0);
 	}
 
-	// Move Left
+	// Move the Racing Line to the left.
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		if (velocity.x >= (maxVelocity * -1))
-		{
-			velocity.x -= velocityIncrement;
-		}
+			racingLine->setPosition(racingLine->getPosition().x - 1, 0);
+	}
+
+	if (racingLine->getPosition().x < 0)
+	{
+		racingLine->setPosition(0.0f, 0.0f);
+	}
+	else if (racingLine->getPosition().x > windowWidth)
+	{
+		racingLine->setPosition(windowWidth, 0.0f);
 	}
 
 	return true;
@@ -207,11 +207,11 @@ bool Application::HandleInput()
 
 void Application::UpdateCar()
 {
-	// Update the car's position.
-	car_sprite.move(velocity.x, 0.0f);
-
 	// Update the car's displacement (used by FuzzyLogic)
 	displacement.x = car_sprite.getPosition().x - racingLine->getPosition().x;
+
+	// Update the car's position.
+	car_sprite.move(velocity.x, 0.0f);
 }
 
 
@@ -225,8 +225,6 @@ bool Application::Run()
 
 	// Set up the Racing Line
 	racingLine = new sf::RectangleShape(sf::Vector2f(1, windowHeight));
-
-	//sf::RectangleShape racingLine(sf::Vector2f(1, windowHeight));
 	racingLine->setPosition(windowWidth / 2, 0);
 	racingLine->setFillColor(sf::Color::White);
 
@@ -261,9 +259,3 @@ bool Application::Run()
 
 	return false;
 }
-
-/*
-	Hello, James! Here's a quick rundown on what needs to be done.
-
-	Good luck, you beautiful bastard! You can do this!
-*/
