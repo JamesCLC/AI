@@ -1,7 +1,10 @@
 #pragma once
 
-//#include "\\StuHome\HomeDrive2$\1501082\_Maths_and_AI\AI\fuzzylite-6.0\fuzzylite\fl\Headers.h"
-#include "Headers.h"
+//////////////////////////////////////////////
+// [https://www.fuzzylite.com/cpp/#example] //
+//////////////////////////////////////////////
+
+#include "fl/Headers.h"
 
 using namespace fl;
 
@@ -11,9 +14,14 @@ public:
 	FuzzyLogic();
 	~FuzzyLogic();
 
-	
+	void Init();
+	float Update(float, float);
+
+	Engine* m_Engine;
+	InputVariable* m_Velocity;
+	InputVariable* m_Displacement;
+	OutputVariable* m_Output;
+	RuleBlock* m_RuleBlock;
 };
 
-// So, in order to try and get FuzzyLite working, I added it as a new line in VC++ DIrectories (I think.)
-// It's only one line, so it should be easy enough to fix.
 

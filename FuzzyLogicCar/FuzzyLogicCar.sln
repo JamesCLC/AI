@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FuzzyLogicCar", "FuzzyLogicCar\FuzzyLogicCar.vcxproj", "{BF153C71-C5C8-48AD-BA98-83B7F20CB827}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fuzzylite", "..\fuzzylite\fuzzylite.vcxproj", "{6AEAA31E-19E5-4C1E-B044-BFC80531318F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,14 @@ Global
 		{BF153C71-C5C8-48AD-BA98-83B7F20CB827}.Release|x64.Build.0 = Release|x64
 		{BF153C71-C5C8-48AD-BA98-83B7F20CB827}.Release|x86.ActiveCfg = Release|Win32
 		{BF153C71-C5C8-48AD-BA98-83B7F20CB827}.Release|x86.Build.0 = Release|Win32
+		{6AEAA31E-19E5-4C1E-B044-BFC80531318F}.Debug|x64.ActiveCfg = Debug|x64
+		{6AEAA31E-19E5-4C1E-B044-BFC80531318F}.Debug|x64.Build.0 = Debug|x64
+		{6AEAA31E-19E5-4C1E-B044-BFC80531318F}.Debug|x86.ActiveCfg = Debug|Win32
+		{6AEAA31E-19E5-4C1E-B044-BFC80531318F}.Debug|x86.Build.0 = Debug|Win32
+		{6AEAA31E-19E5-4C1E-B044-BFC80531318F}.Release|x64.ActiveCfg = Release|x64
+		{6AEAA31E-19E5-4C1E-B044-BFC80531318F}.Release|x64.Build.0 = Release|x64
+		{6AEAA31E-19E5-4C1E-B044-BFC80531318F}.Release|x86.ActiveCfg = Release|Win32
+		{6AEAA31E-19E5-4C1E-B044-BFC80531318F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
