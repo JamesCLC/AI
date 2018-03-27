@@ -29,10 +29,10 @@ void FuzzyLogic::Init()
 	m_Velocity->setDescription("The Car's Velocity relative to the Racing Line.");
 	m_Velocity->setEnabled(true);
 	m_Velocity->setRange(-0.6, 0.6);
-	m_Velocity->setLockValueInRange(false);
-	m_Velocity->addTerm(new Gaussian("left", -0.4, 0.2, 1));
+	m_Velocity->setLockValueInRange(true);
+	m_Velocity->addTerm(new Gaussian("left", -0.4, 0.3, 1));
 	m_Velocity->addTerm(new Gaussian("straight", 0, 0.1, 1));
-	m_Velocity->addTerm(new Gaussian("right", 0.4, -0.2, 1));
+	m_Velocity->addTerm(new Gaussian("right", 0.4, -0.3, 1));
 
 	// Add the Velocity to the Engine
 	m_Engine->addInputVariable(m_Velocity);
@@ -43,10 +43,10 @@ void FuzzyLogic::Init()
 	m_Displacement->setDescription("The Distance of the car from the Racing Line.");
 	m_Displacement->setEnabled(true);
 	m_Displacement->setRange(-600, 600);
-	m_Displacement->setLockValueInRange(false);
-	m_Displacement->addTerm(new Gaussian("left", -400, 200, 1));
+	m_Displacement->setLockValueInRange(true);
+	m_Displacement->addTerm(new Gaussian("left", -400, 300, 1));
 	m_Displacement->addTerm(new Gaussian("centre", 0, 100, 1));
-	m_Displacement->addTerm(new Gaussian("right", 400, 200, 1));
+	m_Displacement->addTerm(new Gaussian("right", 400, 300, 1));
 
 	// Add the Displacement to the Engine
 	m_Engine->addInputVariable(m_Displacement);
@@ -57,7 +57,7 @@ void FuzzyLogic::Init()
 	m_Output->setDescription("The Output of the FIS. Used to modify the car's velocity.");
 	m_Output->setEnabled(true);
 	m_Output->setRange(-1, 1);
-	m_Output->setLockValueInRange(false);
+	m_Output->setLockValueInRange(true);
 	m_Output->setAggregation(new Maximum);
 	m_Output->setDefuzzifier(new Centroid(100));
 	m_Output->setDefaultValue(fl::nan);

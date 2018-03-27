@@ -32,6 +32,10 @@ Application::Application()
 
 	// Set the car to it's default start position.
 	car_sprite.setPosition(windowWidth/2, (windowHeight - 100.0f));
+
+	// Seet up the Fuzzy Inference System
+	m_FIS = new FuzzyLogic();
+	m_FIS->Init();
 }
 
 
@@ -209,6 +213,12 @@ void Application::UpdateCar()
 {
 	// Update the car's displacement (used by FuzzyLogic)
 	displacement.x = car_sprite.getPosition().x - racingLine->getPosition().x;
+
+	// Pass the car's variables to the FIS.
+	velocity.x = (m_FIS->Update(velocity.x, displacement.x));
+
+	// Convert the FIS output into a usable number.
+	velocity.x *= -3;
 
 	// Update the car's position.
 	car_sprite.move(velocity.x, 0.0f);

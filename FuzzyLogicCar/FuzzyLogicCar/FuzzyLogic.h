@@ -15,8 +15,9 @@ public:
 	~FuzzyLogic();
 
 	void Init();
-	float Update(float, float);
+	float Update(float velocity, float displacement);
 
+private:
 	Engine* m_Engine;
 	InputVariable* m_Velocity;
 	InputVariable* m_Displacement;

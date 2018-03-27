@@ -9,7 +9,6 @@
 
 // Includes
 #include "Application.h"
-#include "FuzzyLogic.h"
 
 
 // Main Function

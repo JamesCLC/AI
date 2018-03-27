@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include "FuzzyLogic.h"
 
 using std::cout;
 using std::cin;
@@ -50,5 +51,7 @@ private:
 	sf::Font font;
 	sf::Text velocityText;
 	sf::Text displacementText;
+
+	FuzzyLogic* m_FIS;
 };
 
