@@ -214,14 +214,18 @@ void Application::UpdateCar()
 	// Update the car's displacement (used by FuzzyLogic)
 	displacement.x = car_sprite.getPosition().x - racingLine->getPosition().x;
 
+	cout << velocity.x;
+
 	// Pass the car's variables to the FIS.
 	velocity.x = (m_FIS->Update(velocity.x, displacement.x));
 
+
 	// Convert the FIS output into a usable number.
-	velocity.x *= -3;
+	velocity.x *= 1;
+
 
 	// Update the car's position.
-	car_sprite.move(velocity.x, 0.0f);
+	car_sprite.move(-velocity.x, 0.0f);
 }
 
 

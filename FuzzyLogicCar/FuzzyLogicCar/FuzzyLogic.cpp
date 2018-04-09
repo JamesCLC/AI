@@ -30,9 +30,9 @@ void FuzzyLogic::Init()
 	m_Velocity->setEnabled(true);
 	m_Velocity->setRange(-0.6, 0.6);
 	m_Velocity->setLockValueInRange(true);
-	m_Velocity->addTerm(new Gaussian("left", -0.4, 0.3, 1));
-	m_Velocity->addTerm(new Gaussian("straight", 0, 0.1, 1));
-	m_Velocity->addTerm(new Gaussian("right", 0.4, -0.3, 1));
+	m_Velocity->addTerm(new Gaussian("left", -0.6, 0.3));
+	m_Velocity->addTerm(new Gaussian("straight", 0, 0.1));
+	m_Velocity->addTerm(new Gaussian("right", 0.6, 0.3));
 
 	// Add the Velocity to the Engine
 	m_Engine->addInputVariable(m_Velocity);
@@ -44,9 +44,9 @@ void FuzzyLogic::Init()
 	m_Displacement->setEnabled(true);
 	m_Displacement->setRange(-600, 600);
 	m_Displacement->setLockValueInRange(true);
-	m_Displacement->addTerm(new Gaussian("left", -400, 300, 1));
-	m_Displacement->addTerm(new Gaussian("centre", 0, 100, 1));
-	m_Displacement->addTerm(new Gaussian("right", 400, 300, 1));
+	m_Displacement->addTerm(new Gaussian("left", -640, 400));
+	m_Displacement->addTerm(new Gaussian("centre", 0, 50));
+	m_Displacement->addTerm(new Gaussian("right", 640, 400));
 
 	// Add the Displacement to the Engine
 	m_Engine->addInputVariable(m_Displacement);
@@ -62,11 +62,11 @@ void FuzzyLogic::Init()
 	m_Output->setDefuzzifier(new Centroid(100));
 	m_Output->setDefaultValue(fl::nan);
 	m_Output->setLockPreviousValue(false);
-	m_Output->addTerm(new Gaussian("hardRight", -0.6, 0.4, 1));
-	m_Output->addTerm(new Gaussian("softRight", -0.2, 0.2, 1));
-	m_Output->addTerm(new Gaussian("noChange", 0, 0.1, 1));
-	m_Output->addTerm(new Gaussian("softLeft", 0.2, 0.2, 1));
-	m_Output->addTerm(new Gaussian("hardLeft", 0.6, 0.4, 1));
+	m_Output->addTerm(new Gaussian("hardRight", -1, 0.3));
+	m_Output->addTerm(new Gaussian("softRight", -0.5, 0.4));
+	m_Output->addTerm(new Gaussian("noChange", 0, 0.2));
+	m_Output->addTerm(new Gaussian("softLeft", 0.5, 0.4));
+	m_Output->addTerm(new Gaussian("hardLeft", 1, 0.3));
 
 	// Add the Output to the Engine
 	m_Engine->addOutputVariable(m_Output);
@@ -113,7 +113,7 @@ float FuzzyLogic::Update(float velocity, float displacement)
 	m_Engine->process();
 
 	// Display the info for Debugging purposes.
-	FL_LOG("steer.output = " << Op::str(m_Output->getValue()));
+	//FL_LOG("steer.output = " << Op::str(m_Output->getValue()));
 
 	return m_Output->getValue();
 }
