@@ -62,11 +62,11 @@ void FuzzyLogic::Init()
 	m_Output->setDefuzzifier(new Centroid(100));
 	m_Output->setDefaultValue(fl::nan);
 	m_Output->setLockPreviousValue(false);
-	m_Output->addTerm(new Triangle("hardRight", -1.5, -1, -0.5));
-	m_Output->addTerm(new Triangle("softRight", -1., -0.5, 0));
-	m_Output->addTerm(new Triangle("noChange", -0.5, 0, 0.5));
-	m_Output->addTerm(new Triangle("softLeft", 0, 0.5, 1));
-	m_Output->addTerm(new Triangle("hardLeft", 0.5, 1, 1.5));
+	m_Output->addTerm(new Gaussian("hardRight", -0.6, 0.4, 1));
+	m_Output->addTerm(new Gaussian("softRight", -0.2, 0.2, 1));
+	m_Output->addTerm(new Gaussian("noChange", 0, 0.1, 1));
+	m_Output->addTerm(new Gaussian("softLeft", 0.2, 0.2, 1));
+	m_Output->addTerm(new Gaussian("hardLeft", 0.6, 0.4, 1));
 
 	// Add the Output to the Engine
 	m_Engine->addOutputVariable(m_Output);
