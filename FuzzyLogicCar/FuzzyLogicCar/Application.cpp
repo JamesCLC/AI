@@ -125,6 +125,7 @@ bool Application::DisplayStartup()
 {
 	string userInput;
 	bool inputConfirmed = false;
+	bool isTestingComplete = false;
 
 	cout << "Welcome." << endl;
 	cout << "This application simulates a 2D car being operated by a Fuzzy Inference System." << endl;
@@ -133,7 +134,55 @@ bool Application::DisplayStartup()
 	cout << "This application was built using SFML 2.4.1 {https://www.sfml-dev.org/]" << endl;
 	cout << "and FuzzyLite 6.0 C++ Edition [https://www.fuzzylite.com/]." << endl;
 	cout << endl;
+
+	///////////////////////////////////////////////////////////////////////////////////////
+	cout << "Would you like to run the application in Test Mode? (y/n)" << endl;
+
+	cin >> userInput;
+
+	if (!userInput.compare("Y") || !userInput.compare("y"))
+	{
+		// Run Test Mode - Allow the useer to repeatedly enter values into the FIS.
+		cout << endl << "Running Test Mode." << endl;
+
+		while (!isTestingComplete)
+		{
+			cout << endl << "Please enter your desired conditions." << endl << endl;;
+			cout << "Please note: Negative value correspond to the left of the racing line," << endl;
+			cout << "positive values correspond to the right of the racing line." << endl << endl;
+
+			cout << "Initial velocity (Between 0.6 and -0.6.) = ";
+			cin >> test_velocity;
+
+			cout << "Initial distance from Racing Line (Between " << windowWidth / 2 << " and " << -1 * windowWidth / 2 << ".) = ";
+			cin >> test_displacement;
+
+			cout << "The Output is " << m_FIS->Update(test_velocity, test_displacement) << endl;
+
+			cout << "Would you like to continue testing? (y/n)" << endl;
+
+			// Allow the user to exit testing and proceed to the application.
+			// Clear the string for new input.
+			userInput.clear();
+			cin >> userInput;
+
+			if (!userInput.compare("Y") || !userInput.compare("y"))
+			{
+				isTestingComplete = false;
+			}
+			else if (!userInput.compare("N") || !userInput.compare("n"))
+			{
+				isTestingComplete = true;
+			}
+		} // End While	
+	}
+
+
+	///////////////////////////////////////////////////////////////////////////////////////
+
 	cout << "Would you like to set initial conditions for the application? (y/n)" << endl;
+
+	userInput.clear();
 
 	cin >> userInput;
 
@@ -151,7 +200,7 @@ bool Application::DisplayStartup()
 			cout << endl;
 
 			// Starting Velocity
-			cout << "Initial velocity (Between 1 and -1.) = ";
+			cout << "Initial velocity (Between 0.6 and -0.6.) = ";
 			cin >> velocity.x;
 			cout << endl;
 
@@ -161,16 +210,13 @@ bool Application::DisplayStartup()
 
 			if (!userInput.compare("Y") || !userInput.compare("y"))
 			{
-				// TO DO - RUN THORUGH FSM, DISPLAY OUTPUT.
-				cout << (m_FIS->Update(velocity.x, displacement.x));
-
 				inputConfirmed = true;
-			} else
+			} 
+			else
 			{
 				inputConfirmed = false;
 			}
 		} // end while
-
 	} // end if
 
 	else if (!userInput.compare("N") || !userInput.compare("n"))

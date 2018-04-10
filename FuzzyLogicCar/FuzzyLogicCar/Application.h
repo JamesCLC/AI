@@ -41,6 +41,9 @@ private:
 	sf::Vector2f velocity;
 	sf::Vector2f displacement;
 
+	float test_velocity;
+	float test_displacement;
+
 	sf::Texture car_texture;
 	sf::Sprite car_sprite;
 

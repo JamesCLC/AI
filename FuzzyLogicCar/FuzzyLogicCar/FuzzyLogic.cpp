@@ -42,7 +42,7 @@ void FuzzyLogic::Init()
 	m_Displacement->setName("Displacement");
 	m_Displacement->setDescription("The Distance of the car from the Racing Line.");
 	m_Displacement->setEnabled(true);
-	m_Displacement->setRange(-600, 600);
+	m_Displacement->setRange(-640, 640);
 	m_Displacement->setLockValueInRange(true);
 	m_Displacement->addTerm(new Gaussian("left", -640, 400));
 	m_Displacement->addTerm(new Gaussian("centre", 0, 50));
@@ -60,6 +60,7 @@ void FuzzyLogic::Init()
 	m_Output->setLockValueInRange(true);
 	m_Output->setAggregation(new Maximum);
 	m_Output->setDefuzzifier(new Centroid(100));
+	//m_Output->setDefuzzifier(new Bisector(100));
 	m_Output->setDefaultValue(fl::nan);
 	m_Output->setLockPreviousValue(false);
 	m_Output->addTerm(new Gaussian("hardRight", -1, 0.3));
@@ -111,9 +112,6 @@ float FuzzyLogic::Update(float velocity, float displacement)
 
 	// Process the information.
 	m_Engine->process();
-
-	// Display the info for Debugging purposes.
-	//FL_LOG("steer.output = " << Op::str(m_Output->getValue()));
 
 	return m_Output->getValue();
 }
