@@ -151,7 +151,7 @@ bool Application::DisplayStartup()
 			cout << endl;
 
 			// Starting Velocity
-			cout << "Initial velocity (Between x and y.) = ";
+			cout << "Initial velocity (Between 1 and -1.) = ";
 			cin >> velocity.x;
 			cout << endl;
 
@@ -161,14 +161,14 @@ bool Application::DisplayStartup()
 
 			if (!userInput.compare("Y") || !userInput.compare("y"))
 			{
-				inputConfirmed = true;
-			}
+				// TO DO - RUN THORUGH FSM, DISPLAY OUTPUT.
+				cout << (m_FIS->Update(velocity.x, displacement.x));
 
-			else
+				inputConfirmed = true;
+			} else
 			{
 				inputConfirmed = false;
 			}
-
 		} // end while
 
 	} // end if
@@ -214,15 +214,10 @@ void Application::UpdateCar()
 	// Update the car's displacement (used by FuzzyLogic)
 	displacement.x = car_sprite.getPosition().x - racingLine->getPosition().x;
 
-	cout << velocity.x;
+	//cout << velocity.x;
 
 	// Pass the car's variables to the FIS.
 	velocity.x = (m_FIS->Update(velocity.x, displacement.x));
-
-
-	// Convert the FIS output into a usable number.
-	velocity.x *= 1;
-
 
 	// Update the car's position.
 	car_sprite.move(-velocity.x, 0.0f);
