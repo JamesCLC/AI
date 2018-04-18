@@ -33,7 +33,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -102,7 +102,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>\\StuHome\HomeDrive2$\1501082\_Maths_and_AI\AI\SFML-2.4.1\lib;"\\StuHome\HomeDrive2$\1501082\_Maths_and_AI\AI\FuzzyLogicCar\Debug\fuzzylite.dll"</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>\\StuHome\HomeDrive2$\1501082\_Maths_and_AI\AI\SFML-2.4.1\lib;\\StuHome\HomeDrive2$\1501082\_Maths_and_AI\AI\FuzzyLogicCar\Debug\</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;fuzzylite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
