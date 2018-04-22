@@ -42,7 +42,7 @@ void FuzzyLogic::Init()
 	m_Displacement->setName("Displacement");
 	m_Displacement->setDescription("The Distance of the car from the Racing Line.");
 	m_Displacement->setEnabled(true);
-	m_Displacement->setRange(-640, 640);
+	m_Displacement->setRange(-720, 720);
 	m_Displacement->setLockValueInRange(true);
 	m_Displacement->addTerm(new Gaussian("left", -640, 400));
 	m_Displacement->addTerm(new Gaussian("centre", 0, 50));
